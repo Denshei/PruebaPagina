@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imprimir Boleto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        #detallesViaje {
+            border: solid 2px black;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .contenedorDetalles {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
+
+        .imagenDetalles {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 200px;
+            justify-content: center;
+            padding: 20px;
+        }
+        .imagenDetalles img{
+            height: 80px;
+        }
+
+        .contenedor-boleto {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 2px solid #0044cc;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .titulo-boleto {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #0044cc;
+        }
+
+        .info-boleto {
+            margin-bottom: 20px;
+        }
+
+        .info-boleto p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .asientos-seleccionados {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .boleto-lista {
+            margin-top: 10px;
+        }
+
+        .boleto-lista li {
+            margin-bottom: 5px;
+        }
+
+        .volver-inicio {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .volver-inicio a {
+            text-decoration: none;
+            color: #0044cc;
+            font-weight: bold;
+        }
+
+        .volver-inicio a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-imprimir {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #0044cc;
+            color: #fff;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .btn-imprimir:hover {
+            background-color: #003399;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contenedor-boleto">
+        <div class="titulo-boleto">¡Tu boleto ha sido confirmado!</div>
+        <h1>Información de los Boletos</h1>
+        <div id="infoBoletos"></div>
+
+        <div class="info-boleto">
+            <p><span id="nombreUsuario"></span></p>
+            <div class="contenedorDetalles">
+                <div id="detallesViaje"></div>
+                <div class="imagenDetalles">
+                    <img src="https://www.boliviaentusmanos.com/amarillas/blogos/flota-bolivar-logo.jpg"
+                        alt="logo Bolivar">
+                    <img src="https://www.consumoteca.com/wp-content/uploads/codigo-de-barras.png"
+                        alt="Codigo de barras">
+                </div>
+            </div>
+        </div>
+
+        <div class="volver-inicio">
+            <a href="sesioniniciada.html">Volver al panel de control</a>
+        </div>
+        <button class="btn-imprimir" onclick="window.print()">Imprimir Boleto</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Obtener el usuario actual desde el localStorage
+            var user = localStorage.getItem('loggedInUserName');
+            /*
+                        // Verificar si hay un usuario actualmente logueado
+                        if (user) {
+                            // Mostrar el nombre del usuario en la página
+                            document.getElementById('nombreUsuario').textContent = user;
+                        }
+            */
+            // Definir los campos que queremos mostrar si tienen datos
+            const campos = [
+                { id: 'origen', label: '<strong>Origen</strong>' },
+                { id: 'destino', label: '<strong>Destino</strong>' },
+                { id: 'fechaSalida', label: '<strong>Fecha de Salida</strong>' },
+                { id: 'fechaLlegada', label: '<strong>Fecha de llegada</strong>' },
+                { id: 'pasajeros', label: '<strong>Numero de pasajeros</strong>' },
+                { id: 'categoriaAsientoIda', label: '<strong>Categoría de asiento (ida)</strong>' },
+                { id: 'horarioSalidaIda', label: '<strong>Horario de salida (ida)</strong>' },
+                { id: 'categoriaAsientoRegreso', label: '<strong>Categoría de asiento (regreso)</strong>' },
+                { id: 'horarioSalidaRegreso', label: '<strong>Horario de salida (regreso)</strong>' },
+                { id: 'precioTotal', label: '<strong>Precio total</strong>' },
+                { id: 'nombrePasajero', label: '<strong>Nombre del pasajero</strong>' }
+            ];
+
+            // Obtener el contenedor de los detalles del viaje
+            const detallesViaje = document.getElementById('detallesViaje');
+
+            // Iterar sobre los campos y agregar a la página solo si tienen datos
+            campos.forEach(campo => {
+                const valor = localStorage.getItem(campo.id);
+                if (valor) {
+                    const p = document.createElement('p');
+                    p.innerHTML = `${campo.label}: <span>${valor}</span>`;
+                    detallesViaje.appendChild(p);
+                }
+            });
+
+            // Obtener y mostrar los asientos seleccionados
+            var asientosSeleccionados = JSON.parse(localStorage.getItem('asientosSeleccionados')) || [];
+            if (asientosSeleccionados.length > 0) {
+                const p = document.createElement('p');
+                p.innerHTML = `Asientos seleccionados: <span class="asientos-seleccionados">${asientosSeleccionados.join(', ')}</span>`;
+                detallesViaje.appendChild(p);
+            }
+
+            // Obtener todos los boletos del localStorage
+            const boletos = JSON.parse(localStorage.getItem('boletos')) || [];
+
+            // Obtener el nombre del usuario conectado
+            const usuario = localStorage.getItem('loggedInUserName');
+
+            // Filtrar los boletos para mostrar solo los del usuario conectado
+            const boletosUsuario = boletos.filter(boleto => boleto.usuario === usuario);
+
+            // Mostrar los asientos en la página
+            const infoBoletos = document.getElementById('infoBoletos');
+            if (boletosUsuario.length > 0) {
+                boletosUsuario.forEach(boleto => {
+                    const asientos = boleto.asientos.join(', ');
+                    infoBoletos.innerHTML += `
+                        <h2>Usuario: ${boleto.usuario}</h2>
+                        <p>Asientos: ${asientos}</p>
+                    `;
+                });
+            } else {
+                infoBoletos.innerHTML = `<p>No se encontraron boletos para el usuario ${usuario}.</p>`;
+            }
+        });
+    </script>
+</body>
+
+</html>

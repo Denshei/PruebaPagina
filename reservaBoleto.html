@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Bolivar</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body class="bodyFormularioReserva">
+
+    <header>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl8kQLYpbbMoEyI1_QQo9sBxhhS-t9ze6W2Q&s"
+            alt="LogoPequenio">
+        <nav>
+            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+            <div class="menu-links">
+                <a href="sesionIniciada.html">Panel de Control</a>
+                <a href="#" onclick="redirectToSesionIniciada()">Cerrar Sesión</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="containerReserva">
+        <div class="form-box">
+            <h2>Reserva Ahora</h2>
+            <p>Tickets de bus</p>
+            <form id="searchForm">
+                <div class="trip-options">
+                    <div class="arrow">
+                        <input type="radio" name="tripType" id="oneWay" value="oneWay" checked>
+                        <label for="oneWay">Solo ida</label>
+                    </div>
+                    <div class="arrow">
+                        <input type="radio" name="tripType" id="roundTrip" value="roundTrip">
+                        <label for="roundTrip">Ida y Vuelta</label>
+                    </div>
+                </div>
+                <div class="contenedorSelectoresReserva">
+                    <div class="selectSubDivReserva">
+                        <label for="from">ORIGEN DE</label>
+                        <div>
+                            <select id="from" name="from">
+                                <option value="" disabled selected>Origen</option>
+                                <option value="La Paz">La Paz</option>
+                                <option value="Cochabamba">Cochabamba</option>
+                                <option value="Santa Cruz">Santa Cruz</option>
+                                <option value="Tarija">Tarija</option>
+                                <option value="Sucre">Sucre</option>
+                                <option value="Oruro">Oruro</option>
+                                <option value="Pando">Pando</option>
+                                <option value="Beni">Beni</option>
+                                <option value="Potosi">Potosí</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="selectSubDivReserva">
+                        <label for="to">DESTINO A</label>
+                        <div>
+                            <select id="to" name="to">
+                                <option value="" disabled selected>Destino</option>
+                                <option value="La Paz">La Paz</option>
+                                <option value="Cochabamba">Cochabamba</option>
+                                <option value="Santa Cruz">Santa Cruz</option>
+                                <option value="Tarija">Tarija</option>
+                                <option value="Sucre">Sucre</option>
+                                <option value="Oruro">Oruro</option>
+                                <option value="Pando">Pando</option>
+                                <option value="Beni">Beni</option>
+                                <option value="Potosi">Potosí</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="date-fields">
+                    <div class="dateDivsReserva">
+                        <label for="departureDate">FECHA DE SALIDA</label>
+                        <input type="date" id="departureDate" name="departureDate" required>
+                    </div>
+                    <div class="dateDivsReserva" id="returnDateContainer" style="display: none;">
+                        <label for="returnDate">FECHA DE REGRESO:</label>
+                        <input type="date" id="returnDate" name="returnDate">
+                    </div>
+                </div>
+                <div class="pasajerosDivReserva">
+                    <label for="passengers">NÚMERO DE PASAJEROS</label>
+                    <input type="number" id="passengers" name="passengers" placeholder="Número de Pasajeros" min="1"
+                        required>
+                </div>
+                <div class="contenedorSelectoresReserva">
+                    <div class="selectsDivsReserva">
+                        <div class="selectSubDivReserva">
+                            <label for="categoriaAsientoIda">Categoría de Asiento (Ida)</label>
+                            <div>
+                                <select id="categoriaAsientoIda" name="categoriaAsientoIda">
+                                    <option value="" disabled selected>Eligue tu asiento</option>
+                                    <option value="semiCama">Semi Cama</option>
+                                    <option value="cama">Cama</option>
+                                    <option value="leito">Leito</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="selectSubDivReserva">
+                            <label for="horarioSalidaIda">Horario de Salida (Ida)</label>
+                            <div>
+                                <select id="horarioSalidaIda" name="horarioSalidaIda">
+                                    <option value="" disabled selected>Eligue el horario</option>
+                                    <option value="06:00">6:00 AM</option>
+                                    <option value="09:00">9:00 AM</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="18:00">6:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="selectsDivsReserva" id="returnTripOptions" style="display: none;">
+                        <div class="selectSubDivReserva">
+                            <label for="categoriaAsientoRegreso">Categoría de Asiento (Regreso)</label>
+                            <div>
+                                <select id="categoriaAsientoRegreso" name="categoriaAsientoRegreso">
+                                    <option value="" disabled selected>Eligue tu asiento</option>
+                                    <option value="semiCama">Semi Cama</option>
+                                    <option value="cama">Cama</option>
+                                    <option value="leito">Leito</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="selectSubDivReserva">
+                            <label for="horarioSalidaRegreso">Horario de Salida (Regreso)</label>
+                            <div>
+                                <select id="horarioSalidaRegreso" name="horarioSalidaRegreso">
+                                    <option value="" disabled selected>Eligue el horario</option>
+                                    <option value="06:00">6:00 AM</option>
+                                    <option value="09:00">9:00 AM</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="18:00">6:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="buttonDivReserva">
+                    <button type="submit">Buscar</button>
+                </div>
+            </form>
+        </div>
+        <div class="slide-container">
+            <div class="slide-wrapper">
+                <div class="slide GUIAdeCOMPRA">
+                    <h2>¡TE GUIAMOS EN TU COMPRA!</h2>
+                    <p>Acá te explicamos como conseguir tu ticket en 4 simples pasos:</p>
+                    <p><strong>PASO 1:</strong>Busca el destino que deseas completar junto a tu fecha de viaje y número
+                        de pasajeros.</p>
+                    <p><strong>PASO 2:</strong>Selecciona el horario y costo de tu preferencia.</p>
+                    <p><strong>PASO 3:</strong>Ingresa los datos solicitados y elige el método de pago más cómodo para
+                        ti.</p>
+                    <p><strong>PASO 4:</strong>Efectúa el pago de tu boleto de viaje y recibe el ticket electrónico en
+                        tu correo.</p>
+                </div>
+                <div class="slide PromocionRecorridiza">
+                    <h2>Bienvenido a Trans Bolivar, estamos felices de que seas uno de nuestros más de 500.000 clientes.
+                    </h2>
+                    <p>Trans Bolivar opera hace 10 años para que puedas viajar cómodamente junto a tu familia, con rutas
+                        departamentales. Puedes seleccionar la de tu preferencia de acuerdo a tus comodidades y
+                        presupuesto.</p>
+                    <p>Porque sabemos que invertir en viajar es invertir en uno mismo.</p>
+                    <p>Estamos siempre atentos a las necesidades de nuestros clientes, para seguir expandiendo nuestros
+                        servicios de acuerdo a sus requerimientos.</p>
+                </div>
+                <!--
+                <div class="slide NuevoDiv">
+                    <h2>Nuevo Contenido</h2>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla, nesciunt?.</p>
+                    <p>Puedes agregar más contenido aquí según sea necesario.</p>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+
+    <div id="resultsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Confirmar Ticket</h2>
+            <div id="resultsContainer"></div>
+        </div>
+    </div>
+
+    <footer class="piePagina">
+        <p>&copy; 2024 Flota Bolivar. Todos los derechos reservados.</p>
+        <ul class="social-media">
+            <li><a href="https://www.facebook.com" target="_blank"><img
+                        src="logosPiePagina/logoFB-piePagina.png"
+                        alt="Facebook" width="30"></a></li>
+            <li><a href="https://www.twitter.com" target="_blank"><img
+                        src="logosPiePagina/logoTW-piePagina.png" alt="Twitter" width="30"></a></li>
+            <li><a href="https://www.instagram.com" target="_blank"><img
+                        src="logosPiePagina/logoIG-piePagina.png" alt="Instagram"
+                        width="30"></a></li>
+        </ul>
+    </footer>
+
+    <script src="logicaBoleto.js"></script>
+</body>
+
+</html>

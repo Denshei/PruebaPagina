@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rastreo de Encomienda</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <header>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl8kQLYpbbMoEyI1_QQo9sBxhhS-t9ze6W2Q&s" alt="LogoPequenio">
+        <nav>
+            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+            <div class="menu-links">
+                <a href="sesionIniciada.html">Panel de Control</a>
+                <a href="#" onclick="redirectToSesionIniciada()">Cerrar Sesión</a>
+            </div>
+        </nav>
+    </header>
+    <div class="container-rastreo">
+        <h1 class="title-rastreo">Rastreo de Encomienda por Boleto</h1>
+        <form id="rastreoForm" class="rastreo-form">
+            <label for="codigo" class="label-rastreo">Ingrese el código de encomienda:</label>
+            <input type="text" id="codigo" name="codigo" placeholder="Ingrese el código" class="input-rastreo" required>
+            <button type="submit" class="button-rastreo">Buscar</button>
+        </form>
+        <div id="resultado" class="result-rastreo"></div>
+    </div>
+
+    <footer class="piePagina">
+        <p>&copy; 2024 Flota Bolivar. Todos los derechos reservados.</p>
+        <ul class="social-media">
+            <li><a href="https://www.facebook.com" target="_blank"><img src="logosPiePagina/logoFB-piePagina.png" alt="Facebook" width="30"></a></li>
+            <li><a href="https://www.twitter.com" target="_blank"><img src="logosPiePagina/logoTW-piePagina.png" alt="Twitter" width="30"></a></li>
+            <li><a href="https://www.instagram.com" target="_blank"><img src="logosPiePagina/logoIG-piePagina.png" alt="Instagram" width="30"></a></li>
+        </ul>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('rastreoForm');
+            const resultDiv = document.getElementById('resultado');
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault(); // Evitar el envío por defecto
+
+                const codigo = document.getElementById('codigo').value;
+
+                // Simulación de búsqueda de encomienda (código fijo)
+                if (codigo === "ABCDE12345") {
+                    resultDiv.innerHTML = `<p>Estado de la encomienda: En tránsito hacia el destino.</p>`;
+                } else {
+                    resultDiv.innerHTML = `<p>Estado de la encomienda: No se encontraron resultados para el código ingresado.</p>`;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

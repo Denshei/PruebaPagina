@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Usuario - Flota Bolivar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="bodySesionIniciada">
+        <header>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl8kQLYpbbMoEyI1_QQo9sBxhhS-t9ze6W2Q&s"
+                alt="LogoPequenio">
+            <nav>
+                <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+                <div class="menu-links">
+                    <a href="#" onclick="redirectToSesionIniciada()">Cerrar Sesión</a>
+                </div>
+            </nav>
+        </header>
+        <main class="mainSesionIniciada">
+            <div class="sesionIniciada">
+                <h2 class="sesionIniciadaTitle">Bienvenido a tu Cuenta</h2>
+                <div class="sesionIniciadaContent">
+                    <p id="welcomeMessage">¡Hola, [Nombre del Usuario]! ¿Qué te gustaría hacer hoy?</p>
+                    <div class="sesionIniciadaOptions">
+                        <a href="reservaBoleto.html" class="enlacesSesionIniciada">
+                            <div class="sesionIniciadaOption comprarPasaje">
+                                <img src="https://cdn-icons-png.flaticon.com/512/709/709019.png" alt="Comprar Pasaje">
+                                <p>Comprar Pasaje</p>
+                            </div>
+                        </a>
+
+                        <a href="enviarEncomienda.html" class="enlacesSesionIniciada">
+                            <div class="sesionIniciadaOption enviarEncomienda">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2250/2250334.png"
+                                    alt="Enviar Encomienda">
+                                <p>Enviar Encomienda</p>
+                            </div>
+                        </a>
+
+                        <a href="rastrearEncomienda.html" class="enlacesSesionIniciada">
+                            <div class="sesionIniciadaOption rastrearEncomienda">
+                                <img src="https://cdn-icons-png.flaticon.com/512/313/313215.png"
+                                    alt="Rastrear Encomienda">
+                                <p>Rastrear Encomienda</p>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="piePagina">
+            <p>&copy; 2024 Flota Bolivar. Todos los derechos reservados.</p>
+            <ul class="social-media">
+                <li><a href="https://www.facebook.com" target="_blank"><img
+                            src="logosPiePagina/logoFB-piePagina.png"
+                            alt="Facebook" width="30"></a></li>
+                <li><a href="https://www.twitter.com" target="_blank"><img
+                            src="logosPiePagina/logoTW-piePagina.png" alt="Twitter" width="30"></a></li>
+                <li><a href="https://www.instagram.com" target="_blank"><img
+                            src="logosPiePagina/logoIG-piePagina.png" alt="Instagram"
+                            width="30"></a></li>
+            </ul>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+    <script src="scriptsCarpeta/interactividad.js"></script>
+</body>
+
+</html>

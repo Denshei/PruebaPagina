@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envío de Encomiendas</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <header>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl8kQLYpbbMoEyI1_QQo9sBxhhS-t9ze6W2Q&s"
+            alt="LogoPequenio">
+        <nav>
+            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+            <div class="menu-links">
+                <a href="sesionIniciada.html">Panel de Control</a>
+                <a href="#" onclick="redirectToSesionIniciada()">Cerrar Sesión</a>
+            </div>
+        </nav>
+    </header>
+    <div class="container-envio">
+        <h1 class="title-envio">Envío de Encomiendas por Bus</h1>
+        <form id="envioForm" class="envio-form">
+            <label for="nombre" class="label-envio">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre" class="input-envio" required>
+            <label for="direccion" class="label-envio">Dirección de envío:</label>
+            <input type="text" id="direccion" name="direccion" placeholder="Ingrese su dirección" class="input-envio" required>
+            <label for="carnet" class="label-envio">Numero de carnet:</label>
+            <input type="number" id="carnet" name="carnet" placeholder="Ingrese su numero de carnet" class="input-envio" required>
+            <label for="destino" class="label-envio">Destino:</label>
+            <select id="destino" name="destino" class="select-envio" required>
+                <option value="">Seleccione el destino</option>
+                <option value="La Paz">La Paz</option>
+                <option value="Santa Cruz">Santa Cruz</option>
+                <option value="Cochabamba">Cochabamba</option>
+                <option value="Oruro">Oruro</option>
+                <option value="Sucre">Sucre</option>
+                <option value="Tarija">Tarija</option>
+                <option value="Beni">Beni</option>
+                <option value="Pando">Pando</option>
+                <option value="Chuquisaca">Chuquisaca</option>
+            </select>
+            <label for="dimensiones" class="label-envio">Dimensiones (cm):</label>
+            <input type="text" id="dimensiones" name="dimensiones" placeholder="Alto x Ancho x Profundo" class="input-envio" required>
+            <label for="peso" class="label-envio">Peso (kg):</label>
+            <input type="text" id="peso" name="peso" placeholder="Ingrese el peso" class="input-envio" required>
+            <button type="submit" class="button-envio">Enviar Encomienda</button>
+        </form>
+    </div>
+
+    <div id="mensajeModal" class="modal-envio">
+        <div class="modal-content-envio">
+            <span class="close-envio">&times;</span>
+            <p id="codigoMensaje"></p>
+        </div>
+    </div>
+
+    <footer class="piePagina">
+        <p>&copy; 2024 Flota Bolivar. Todos los derechos reservados.</p>
+        <ul class="social-media">
+            <li><a href="https://www.facebook.com" target="_blank"><img
+                        src="logosPiePagina/logoFB-piePagina.png"
+                        alt="Facebook" width="30"></a></li>
+            <li><a href="https://www.twitter.com" target="_blank"><img
+                        src="logosPiePagina/logoTW-piePagina.png" alt="Twitter" width="30"></a></li>
+            <li><a href="https://www.instagram.com" target="_blank"><img
+                        src="logosPiePagina/logoIG-piePagina.png" alt="Instagram"
+                        width="30"></a></li>
+        </ul>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('envioForm');
+            const modal = document.getElementById('mensajeModal');
+            const closeButton = document.getElementsByClassName('close-envio')[0];
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault(); // Evitar el envío por defecto
+
+                // Simular generación de código de encomienda (podría ser más complejo en un entorno real)
+                const codigo = generarCodigo();
+
+                // Mostrar el modal con el código generado
+                modal.style.display = 'block';
+                document.getElementById('codigoMensaje').innerText = `Encomienda enviada. Código: ${codigo}`;
+            });
+
+            // Cerrar el modal al hacer clic en el botón de cerrar (X)
+            closeButton.addEventListener('click', function () {
+                modal.style.display = 'none';
+            });
+
+            // Cerrar el modal si se hace clic fuera de él
+            window.addEventListener('click', function (event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            // Función para generar un código de encomienda fijo
+            function generarCodigo() {
+                return "ABCDE12345"; // Código fijo para la encomienda
+            }
+
+        });
+    </script>
+</body>
+
+</html>

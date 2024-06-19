@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empresa de Buses</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl8kQLYpbbMoEyI1_QQo9sBxhhS-t9ze6W2Q&s"
+                alt="LogoPequenio">
+            <nav>
+                <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+                <div class="menu-links">
+                    <a href="servicios.html">Servicios</a>
+                    <a href="destinos.html">Destinos</a>
+                    <a href="sucursales.html">Sucursales</a>
+                    <a href="nosotros.html">Nosotros</a>
+                    <a href="cuenta.html">Cuenta</a>
+                </div>
+            </nav>
+        </header>
+        <figure>
+            <img class="logoMain" src="imagenes/flota_bolivar_logo.png" alt="logo">
+            <br>
+            <div class="slider-container">
+                <div class="slider">
+                    <div class="slide"><img src="imagenes/imagen1_bolivar.jpg" alt="Imagen 1"></div>
+                    <div class="slide"><img src="imagenes/imagen2_bolivar.jpg" alt="Imagen 2"></div>
+                    <div class="slide"><img src="imagenes/imagen3_bolivar.jpg" alt="Imagen 3"></div>
+                    <div class="slide"><img src="imagenes/imagen4_bolivar.jpg" alt="Imagen 4"></div>
+                </div>
+            </div>
+        </figure>
+        <main class="mainIndex">
+            <div class="divIzquierdo">
+                <p>COMPRA TUS<br>PASAJES EN LÍNEA</p>
+                <button onclick="window.location.href='cuenta.html'">IR A LA BOLETERÍA VIRTUAL</button>
+            </div>
+            <div class="divDerecho">
+                <p>RASTREA TU<br>ENCOMIENDA O CARGA</p>
+                <button onclick="window.location.href='cuenta.html'">RASTREAR ENVÍO</button>
+            </div>
+
+
+        </main>
+        <footer class="piePagina">
+            <p>&copy; 2024 Flota Bolivar. Todos los derechos reservados.</p>
+            <ul class="social-media">
+                <li><a href="https://www.facebook.com" target="_blank"><img src="logosPiePagina/logoFB-piePagina.png"
+                            alt="Facebook" width="30"></a></li>
+                <li><a href="https://www.twitter.com" target="_blank"><img src="logosPiePagina/logoTW-piePagina.png"
+                            alt="Twitter" width="30"></a></li>
+                <li><a href="https://www.instagram.com" target="_blank"><img src="logosPiePagina/logoIG-piePagina.png"
+                            alt="Instagram" width="30"></a></li>
+            </ul>
+        </footer>
+    </div>
+    <script src="scriptsCarpeta/script.js"></script>
+    <script src="scriptsCarpeta/interactividad.js"></script>
+</body>
+
+</html>

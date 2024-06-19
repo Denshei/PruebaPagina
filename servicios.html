@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios - Bus Bolívar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="serviciosBody">
+    <header>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl8kQLYpbbMoEyI1_QQo9sBxhhS-t9ze6W2Q&s" alt="LogoPequenio">
+        <nav>
+            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+            <div class="menu-links">
+                <a href="index.html">Inicio</a>
+                <a href="servicios.html">Servicios</a>
+                <a href="destinos.html">Destinos</a>
+                <a href="sucursales.html">Sucursales</a>
+                <a href="nosotros.html">Nosotros</a>
+                <a href="cuenta.html">Cuenta</a>
+            </div>
+        </nav>
+    </header>
+    
+    <h1 class="services-heading">NUESTROS SERVICIOS</h1>
+
+    <div class="contenedorServicios">
+        
+        <main class="serviciosMain">
+            
+            <section>
+                <div class="service" onclick="changeImage('viaja', this)" onmouseover="changeImage('viaja', this)" onmouseout="resetImage()">
+                    <h2 class="service-title">Viaja con Nosotros</h2>
+                    <p class="service-description">Descubre una experiencia de viaje única con Bus Bolívar. Ofrecemos
+                        comodidad, seguridad y puntualidad en cada uno de nuestros recorridos. Ya sea que viajes solo o
+                        en grupo, ¡te garantizamos un viaje placentero!</p>
+                    <a href="cuenta.html" class="cta-button">Reservar ahora</a>
+                    <div class="service-image-container"></div>
+                </div>
+                <div class="service" onclick="changeImage('encomiendas', this)" onmouseover="changeImage('encomiendas', this)" onmouseout="resetImage()">
+                    <h2 class="service-title">Envío y Recepción de Encomiendas</h2>
+                    <p class="service-description">Además de transportar pasajeros, en Bus Bolívar nos encargamos del
+                        envío y recepción de encomiendas. Confía en nosotros para el transporte seguro y rápido de tus
+                        paquetes y documentos importantes.</p>
+                    <a href="cuenta.html" class="cta-button">Más información</a>
+                    <div class="service-image-container"></div>
+                </div>
+                <div class="service" onclick="changeImage('puerta', this)" onmouseover="changeImage('puerta', this)" onmouseout="resetImage()">
+                    <h2 class="service-title">Traslado de Puerta a Puerta</h2>
+                    <p class="service-description">Nuestro servicio de traslado de puerta a puerta te brinda la
+                        comodidad de llegar directamente a tu destino final. Evita preocupaciones y déjanos encargarnos
+                        de llevarte desde tu ubicación actual hasta la puerta de tu destino.</p>
+                    <a href="cuenta.html" class="cta-button">Solicitar servicio</a>
+                    <div class="service-image-container"></div>
+                </div>
+                <div class="service" onclick="changeImage('delegaciones', this)" onmouseover="changeImage('delegaciones', this)" onmouseout="resetImage()">
+                    <h2 class="service-title">Traslado de Delegaciones</h2>
+                    <p class="service-description">¿Necesitas trasladar a un grupo grande de personas? En Bus Bolívar te
+                        ofrecemos soluciones personalizadas para el traslado de delegaciones. Ya sea para eventos
+                        corporativos, conferencias o excursiones, ¡contamos con la capacidad y experiencia necesarias!
+                    </p>
+                    <a href="cuenta.html" class="cta-button">Cotizar ahora</a>
+                    <div class="service-image-container"></div>
+                </div>
+            </section>
+        </main>
+        <div id="serviceImage">
+            <img src="https://st4.depositphotos.com/28636338/41412/v/450/depositphotos_414121816-stock-illustration-bus-icon-vector-illustration.jpg" alt="imagenservice">
+        </div>
+    </div>
+
+    <footer class="piePagina">
+        <p>&copy; 2024 Flota Bolivar. Todos los derechos reservados.</p>
+        <ul class="social-media">
+            <li><a href="https://www.facebook.com" target="_blank">
+                    <img src="logosPiePagina/logoFB-piePagina.png" alt="Facebook" width="30">
+                </a>
+            </li>
+            <li><a href="https://www.twitter.com" target="_blank">
+                    <img src="logosPiePagina/logoTW-piePagina.png" alt="Twitter" width="30">
+                </a>
+            </li>
+            <li><a href="https://www.instagram.com" target="_blank">
+                    <img src="logosPiePagina/logoIG-piePagina.png" alt="Instagram" width="30">
+                </a>
+            </li>
+        </ul>
+    </footer>
+    <script src="scriptsCarpeta/script.js"></script>
+    <script src="scriptsCarpeta/interactividad.js"></script>
+</body>
+
+</html>

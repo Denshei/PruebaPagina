@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selección de Asientos</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <header>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl8kQLYpbbMoEyI1_QQo9sBxhhS-t9ze6W2Q&s"
+            alt="LogoPequenio">
+        <nav>
+            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+            <div class="menu-links">
+                <a href="sesionIniciada.html">Panel de Control</a>
+                <a href="#" onclick="redirectToSesionIniciada()">Cerrar Sesión</a>
+            </div>
+        </nav>
+    </header>
+    <div class="titulo-seleccion-asiento">Selección de Asientos</div>
+    <div class="contenedor-autobus" id="contenedorAutobus">
+        <!-- Generacion dinamica de asientos -->
+    </div>
+    <div class="contenedor-leyenda">
+        <div class="item-leyenda">
+            <span class="color-leyenda" style="background-color: #007bff;"></span> Disponible
+        </div>
+        <div class="item-leyenda">
+            <span class="color-leyenda" style="background-color: #6c757d;"></span> Ocupado
+        </div>
+        <div class="item-leyenda">
+            <span class="color-leyenda" style="background-color: #ffc107;"></span> Seleccionado
+        </div>
+    </div>
+    <button id="btn-confirmar-asiento" class="btn-confirmar-asiento" onclick="confirmarSeleccion()">Confirmar
+        Selección</button>
+
+
+    <footer class="piePagina">
+        <p>&copy; 2024 Flota Bolivar. Todos los derechos reservados.</p>
+        <ul class="social-media">
+            <li><a href="https://www.facebook.com" target="_blank"><img
+                        src="logosPiePagina/logoFB-piePagina.png"
+                        alt="Facebook" width="30"></a></li>
+            <li><a href="https://www.twitter.com" target="_blank"><img
+                        src="logosPiePagina/logoTW-piePagina.png" alt="Twitter" width="30"></a></li>
+            <li><a href="https://www.instagram.com" target="_blank"><img
+                        src="logosPiePagina/logoIG-piePagina.png" alt="Instagram"
+                        width="30"></a></li>
+        </ul>
+    </footer>
+    <script>
+        class AsientoManager {
+            constructor() {
+                this.asientosOcupados = JSON.parse(localStorage.getItem('asientosOcupados')) || [];
+            }
+
+            guardarAsientoOcupado(idAsiento) {
+                if (!this.asientosOcupados.includes(idAsiento)) {
+                    this.asientosOcupados.push(idAsiento);
+                    this.actualizarLocalStorage();
+                }
+            }
+
+            cargarAsientosOcupados() {
+                return this.asientosOcupados;
+            }
+
+            actualizarLocalStorage() {
+                localStorage.setItem('asientosOcupados', JSON.stringify(this.asientosOcupados));
+            }
+
+            asientoEstaOcupado(idAsiento) {
+                return this.asientosOcupados.includes(idAsiento);
+            }
+        }
+
+        //Obtencion de los datos de el localStorage para ver los boletos en el otro lado
+        var boletos = JSON.parse(localStorage.getItem('boletos')) || [];
+
+
+        var asientosSeleccionados = [];
+        var asientoManager;
+        var cantidadPasajeros = 1; // Cantidad de pasajeros por defecto
+
+        document.addEventListener('DOMContentLoaded', function () {
+            asientoManager = new AsientoManager();
+
+            // Obtener tipo de viaje y calidad del bus desde localStorage
+            var tipoViaje = localStorage.getItem('tipoViaje');
+            var categoriaAsientoIda = localStorage.getItem('categoriaAsientoIda');
+            var categoriaAsientoRegreso = localStorage.getItem('categoriaAsientoRegreso');
+
+            // Obtener la cantidad de pasajeros del localStorage
+            cantidadPasajeros = parseInt(localStorage.getItem('cantidadPasajeros')) || 1;
+
+            // Obtener los asientos seleccionados del localStorage
+            asientosSeleccionados = JSON.parse(localStorage.getItem('asientosSeleccionados')) || [];
+
+            generarAsientos(tipoViaje, categoriaAsientoIda, categoriaAsientoRegreso);
+        });
+
+        function generarAsientos() {
+            const contenedorAutobus = document.getElementById('contenedorAutobus');
+            const asientosOcupados = asientoManager.cargarAsientosOcupados();
+
+            for (let i = 1; i <= 30; i++) {
+                const asiento = document.createElement('div');
+                asiento.id = `asiento-${i}`;
+                asiento.className = 'asiento';
+                asiento.innerText = i;
+                if (asientosOcupados.includes(asiento.id)) {
+                    asiento.classList.add('ocupado');
+                }
+                asiento.addEventListener('click', function () {
+                    alternarAsiento(this);
+                });
+                contenedorAutobus.appendChild(asiento);
+            }
+        }
+
+
+        function alternarAsiento(asiento) {
+            if (asiento.classList.contains('ocupado')) {
+                mostrarMensajeOcupado();
+            } else {
+                if (asiento.classList.contains('seleccionado')) {
+                    asiento.classList.remove('seleccionado');
+                    asientosSeleccionados = asientosSeleccionados.filter(id => id !== asiento.id);
+                } else {
+                    asiento.classList.add('seleccionado');
+                    asientosSeleccionados.push(asiento.id);
+                }
+                actualizarBotonConfirmar();
+            }
+        }
+
+        function actualizarBotonConfirmar() {
+            var botonConfirmar = document.getElementById('btn-confirmar-asiento');
+            if (asientosSeleccionados.length > 0) {
+                botonConfirmar.style.display = 'block';
+            } else {
+                botonConfirmar.style.display = 'none';
+            }
+        }
+
+        function mostrarMensajeOcupado() {
+            alert("Este asiento ya está ocupado. Por favor, seleccione otro asiento.");
+        }
+
+        function confirmarSeleccion() {
+            if (asientosSeleccionados.length > 0) {
+                alert("Selección confirmada: " + asientosSeleccionados.join(", "));
+
+                // Obtener el nombre del usuario conectado desde localStorage
+                var usuario = localStorage.getItem('loggedInUserName');
+
+                // Obtener asientos ocupados existentes
+                var boletos = JSON.parse(localStorage.getItem('boletos')) || [];
+
+                // Agregar los nuevos asientos seleccionados con el nombre del usuario
+                boletos.push({
+                    usuario: usuario,
+                    asientos: asientosSeleccionados
+                });
+
+                // Guardar los boletos actualizados en el localStorage
+                localStorage.setItem('boletos', JSON.stringify(boletos));
+
+                // Marcar los asientos como ocupados
+                asientosSeleccionados.forEach(function (idAsiento) {
+                    var asiento = document.getElementById(idAsiento);
+                    asiento.classList.remove('seleccionado');
+                    asiento.classList.add('ocupado');
+                    asientoManager.guardarAsientoOcupado(idAsiento);
+                });
+
+                asientosSeleccionados = [];
+                actualizarBotonConfirmar();
+
+                // Redirigir a imprimirBoleto.html después de confirmar la selección
+                window.location.href = 'imprimirBoleto.html';
+            } else {
+                alert("No hay asientos seleccionados para confirmar.");
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

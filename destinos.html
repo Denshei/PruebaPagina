@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="scriptsCarpeta/script.js"></script>
+    <script src="scriptsCarpeta/interactividad.js"></script>
+</head>
+
+<body>
+    <header>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl8kQLYpbbMoEyI1_QQo9sBxhhS-t9ze6W2Q&s"
+            alt="LogoPequenio">
+        <nav>
+            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+            <div class="menu-links">
+                <a href="index.html">Inicio</a>
+                <a href="servicios.html">Servicios</a>
+                <a href="destinos.html">Destinos</a>
+                <a href="sucursales.html">Sucursales</a>
+                <a href="nosotros.html">Nosotros</a>
+                <a href="cuenta.html">Cuenta</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="destinosMain">
+        <h1 id="TITULOSpaginaDestinos">NUESTROS DESTINOS</h1>
+
+        <div class="destino destinoLAPAZ"
+            onclick="showInfo('La Paz', '7:30 – 10:00 – 11:30 – 16:00 – 21:00 – 21:30 – 22:00 – 22:30')">
+            <h2 class="NOMBREciudad">LA PAZ</h2>
+            <div class="overlay">
+                <div class="plus-circle"
+                    onclick="showInfo('La Paz', '7:30 – 10:00 – 11:30 – 16:00 – 21:00 – 21:30 – 22:00 – 22:30')">+</div>
+            </div>
+        </div>
+
+        <div class="destino destinoCOCHABAMBA" onclick="showInfo('Cochabamba', '8:00 – 19:00 – 20:00 – 21:00 – 21:30')">
+            <h2 class="NOMBREciudad">COCHABAMBA</h2>
+            <div class="overlay">
+                <div class="plus-circle" onclick="showInfo('Cochabamba', '8:00 – 19:00 – 20:00 – 21:00 – 21:30')">+
+                </div>
+            </div>
+        </div>
+
+        <div class="destino destinoSANTACRUZ" onclick="showInfo('Santa Cruz', '8:00 – 19:00 – 20:00 – 21:00 – 21:30')">
+            <h2 class="NOMBREciudad">SANTA CRUZ</h2>
+            <div class="overlay">
+                <div class="plus-circle" onclick="showInfo('Santa Cruz', '8:00 – 19:00 – 20:00 – 21:00 – 21:30')">+
+                </div>
+            </div>
+        </div>
+
+        <div class="destino destinoORURO"
+            onclick="showInfo('Oruro', '7:30 – 10:00 – 11:30 – 16:00 – 21:00 – 21:30 – 22:00 – 22:30')">
+            <h2 class="NOMBREciudad">ORURO</h2>
+            <div class="overlay">
+                <div class="plus-circle"
+                    onclick="showInfo('Oruro', '7:30 – 10:00 – 11:30 – 16:00 – 21:00 – 21:30 – 22:00 – 22:30')">+</div>
+            </div>
+        </div>
+
+        <div class="destino destinoTARIJA"
+            onclick="showInfo('Tarija', '7:30 – 10:00 – 11:30 – 16:00 – 21:00 – 21:30 – 22:00 – 22:30')">
+            <h2 class="NOMBREciudad">TARIJA</h2>
+            <div class="overlay">
+                <div class="plus-circle"
+                    onclick="showInfo('Tarija', '7:30 – 10:00 – 11:30 – 16:00 – 21:00 – 21:30 – 22:00 – 22:30')">+</div>
+            </div>
+        </div>
+
+        <div class="destino destinoPOTOSI" onclick="showInfo('Potosí', '8:00 – 10:00 – 12:00 – 14:00 – 16:00')">
+            <h2 class="NOMBREciudad">POTOSI</h2>
+            <div class="overlay">
+                <div class="plus-circle" onclick="showInfo('Potosí', '8:00 – 10:00 – 12:00 – 14:00 – 16:00')">+</div>
+            </div>
+        </div>
+
+        <div class="destino destinoPANDO" onclick="showInfo('Pando', '6:00 – 9:00 – 12:00 – 15:00 – 18:00')">
+            <h2 class="NOMBREciudad">PANDO</h2>
+            <div class="overlay">
+                <div class="plus-circle" onclick="showInfo('Pando', '6:00 – 9:00 – 12:00 – 15:00 – 18:00')">+</div>
+            </div>
+        </div>
+
+        <div class="destino destinoBENI" onclick="showInfo('Beni', '7:00 – 10:00 – 13:00 – 16:00 – 19:00')">
+            <h2 class="NOMBREciudad">BENI</h2>
+            <div class="overlay">
+                <div class="plus-circle" onclick="showInfo('Beni', '7:00 – 10:00 – 13:00 – 16:00 – 19:00')">+</div>
+            </div>
+        </div>
+
+        <div class="destino destinoSUCRE" onclick="showInfo('Sucre', '7:00 – 10:00 – 13:00 – 16:00 – 19:00')">
+            <h2 class="NOMBREciudad">SUCRE</h2>
+            <div class="overlay">
+                <div class="plus-circle" onclick="showInfo('Sucre', '7:00 – 10:00 – 13:00 – 16:00 – 19:00')">+</div>
+            </div>
+        </div>
+    </main>
+
+    <div class="overlay-context" id="overlay-context"></div>
+
+    <div class="popup" id="popup">
+        <p id="popup-info"></p>
+        <button onclick="closePopup()">Cerrar</button>
+    </div>
+
+    <div class="context-menu" id="context-menu">
+        <h2 id="context-title"></h2>
+        <p id="context-info"></p>
+        <button onclick="closeContextMenu()">Cerrar</button>
+    </div>
+
+    <footer class="piePagina">
+        <p>&copy; 2024 Flota Bolivar. Todos los derechos reservados.</p>
+        <ul class="social-media">
+            <li><a href="https://www.facebook.com" target="_blank"><img
+                        src="logosPiePagina/logoFB-piePagina.png"
+                        alt="Facebook" width="30"></a></li>
+            <li><a href="https://www.twitter.com" target="_blank"><img
+                        src="logosPiePagina/logoTW-piePagina.png" alt="Twitter" width="30"></a></li>
+            <li><a href="https://www.instagram.com" target="_blank"><img
+                        src="logosPiePagina/logoIG-piePagina.png" alt="Instagram"
+                        width="30"></a></li>
+        </ul>
+    </footer>
+    
+
+</body>
+
+</html>
